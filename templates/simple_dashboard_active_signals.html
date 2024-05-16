@@ -7,7 +7,10 @@
 {% for signal in active_dashboard_signals %}
 	<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-{{ signal.widget_columns }}">
 		<div class="mdc-card mdc-typography mdc-typography--body1" style="padding: 16px;">
-			<strong>{{ signal.name }}</strong>
+			{% if signal.configuration.hide_title %}
+			{% else %}
+				<strong>{{ signal.name }}</strong>
+			{% endif %}
 			{{ signal.widget_body }}
 		</div>
 	</div>

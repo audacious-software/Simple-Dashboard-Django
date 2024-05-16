@@ -6,6 +6,7 @@ import traceback
 
 from django.conf import settings
 from django.core.checks import Warning, register # pylint: disable=redefined-builtin
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -22,7 +23,7 @@ class DashboardSignal(models.Model):
 
     active = models.BooleanField(default=False)
 
-    configuration = JSONField(default=dict, null=True, blank=True)
+    configuration = JSONField(default=dict, null=True, blank=True, encoder=DjangoJSONEncoder)
 
     priority = models.IntegerField(default=0)
 
@@ -37,6 +38,9 @@ class DashboardSignal(models.Model):
         app_module = importlib.import_module('.dashboard_api', package=self.package)
 
         new_value = app_module.update_dashboard_signal_value(self.name)
+
+        if new_value is None:
+            return
 
         DashboardSignalValue.objects.create(signal=self, recorded=now, value=new_value)
 
@@ -83,7 +87,7 @@ class DashboardSignalValue(models.Model):
 
     recorded = models.DateTimeField()
 
-    value = JSONField(default=dict)
+    value = JSONField(default=dict, encoder=DjangoJSONEncoder)
 
     def __str__(self):
         return '%s = %s' % (self.signal, self.fetch_value())

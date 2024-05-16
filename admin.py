@@ -1,6 +1,6 @@
 from prettyjson import PrettyJSONWidget
 
-from django.contrib import admin
+from django.contrib import admin, messages
 
 try:
     from django.db.models import JSONField
@@ -38,11 +38,25 @@ class DashboardSignalValueInline(admin.TabularInline):
     def has_delete_permission(self, request, obj=None): # pylint: disable=arguments-differ,unused-argument
         return False
 
+def activate_signal(modeladmin, request, queryset): # pylint: disable=unused-argument
+    updated = queryset.update(active=True)
+
+    messages.add_message(request, messages.INFO, '%d signal(s) activated.' % updated)
+
+activate_signal.short_description = "Activate selected signals"
+
+def deactivate_signal(modeladmin, request, queryset): # pylint: disable=unused-argument
+    updated = queryset.update(active=False)
+
+    messages.add_message(request, messages.INFO, '%d signal(s) deactivated.' % updated)
+
+deactivate_signal.short_description = "Deactivate selected signals"
 
 @admin.register(DashboardSignal)
 class DashboardSignalAdmin(admin.ModelAdmin):
     list_display = ('name', 'package', 'active', 'priority', 'refresh_interval', 'next_run',)
     list_filter = ('active', 'refresh_interval', 'package', 'next_run',)
+    search_fields = ('name', 'package', 'configuration',)
 
     formfield_overrides = {
         JSONField: {'widget': PrettyJSONWidget(attrs={'initial': 'parsed'})}
@@ -51,3 +65,5 @@ class DashboardSignalAdmin(admin.ModelAdmin):
     inlines = [
         DashboardSignalValueInline,
     ]
+
+    actions = [activate_signal, deactivate_signal]

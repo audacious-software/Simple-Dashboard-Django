@@ -43,7 +43,11 @@ class Command(BaseCommand):
                     if existing is None:
                         configuration = dashboard_signal.get('configuration', {})
 
-                        DashboardSignal.objects.create(package=app, name=signal_name, refresh_interval=refresh_interval, configuration=configuration)
+                        signal = DashboardSignal.objects.create(package=app, name=signal_name, refresh_interval=refresh_interval, configuration=configuration)
+
+                        if configuration.get('active', False):
+                            signal.active = True
+                            signal.save()
             except ImportError:
                 pass
             except AttributeError:

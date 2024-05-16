@@ -13,6 +13,6 @@ def simple_dashboard_active_signals(context):
 
     template_context.update(context.flatten())
 
-    template_context['active_dashboard_signals'] = DashboardSignal.objects.filter(active=True).order_by('-priority')
+    template_context['active_dashboard_signals'] = DashboardSignal.objects.filter(active=True).order_by('-priority', 'name')
 
     return render_to_string('simple_dashboard_active_signals.html', template_context)
