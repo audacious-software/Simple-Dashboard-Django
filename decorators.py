@@ -1,3 +1,5 @@
+# pylint: disable=line-too-long, no-member
+
 import datetime
 import inspect
 
@@ -6,7 +8,7 @@ from .models import DashboardSignal
 def add_dashboard_signal(**kwargs):
     def wrap(func):
         def wrapped_func(*args):
-            refresh_interval = datetime.timeldelta(seconds=kwargs.get('refresh_interval', -1))
+            refresh_interval = datetime.timedelta(seconds=kwargs.get('refresh_interval', -1))
 
             module = inspect.getmodule(func)
 

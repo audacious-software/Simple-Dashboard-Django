@@ -1,3 +1,5 @@
+# pylint: disable=line-too-long, no-member
+
 import calendar
 import importlib
 import traceback
@@ -99,6 +101,9 @@ class DashboardSignalValue(models.Model):
 
     def timestamp(self):
         return calendar.timegm(self.recorded.utctimetuple())
+
+    def edit_link(self):
+        return '/admin/simple_dashboard/dashboardsignalvalue/%s/change/' % self.pk
 
 @register()
 def check_prettyjson_installed(app_configs, **kwargs): # pylint: disable=unused-argument

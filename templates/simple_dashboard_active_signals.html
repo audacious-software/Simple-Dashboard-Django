@@ -1,5 +1,7 @@
 {% load static %}
+<script src="{% static 'simple_dashboard/vendor/jquery.js' %}"></script>
 <script src="{% static 'simple_dashboard/vendor/chart.js' %}"></script>
+<script src="{% static 'simple_dashboard/vendor/humanize.js' %}"></script>
 <script src="{% static 'simple_dashboard/vendor/moment.js' %}"></script>
 <script src="{% static 'simple_dashboard/vendor/chartjs-adapter-moment.js' %}"></script>
 {% for signal in active_dashboard_signals %}

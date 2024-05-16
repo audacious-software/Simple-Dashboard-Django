@@ -37,19 +37,6 @@ def update_dashboard_signal_value(signal_name):
             'range_max': 6,
         }
 
-    return None
-
-def update_dashboard_signal_value(signal_name):
-    if signal_name == 'Random Test Signal':
-        random_value = random.randint(1, 6)
-
-        return {
-            'display_value': random_value,
-            'value': random_value,
-            'range_min': 1,
-            'range_max': 6,
-        }
-
     if signal_name == 'Latest Time Signal':
         now = timezone.now().astimezone(pytz.timezone(settings.TIME_ZONE))
 

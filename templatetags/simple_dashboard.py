@@ -1,9 +1,11 @@
+# pylint: disable=line-too-long, no-member
+
 from django import template
 from django.template.loader import render_to_string
 
-register = template.Library()
-
 from ..models import DashboardSignal
+
+register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def simple_dashboard_active_signals(context):
