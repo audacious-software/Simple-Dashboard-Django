@@ -28,7 +28,7 @@ def dashboard_template(signal_name):
 
 def update_dashboard_signal_value(signal_name):
     if signal_name == 'Random Test Signal':
-        random_value = random.randint(1, 6)
+        random_value = random.randint(1, 6) # nosec
 
         return {
             'display_value': random_value,
