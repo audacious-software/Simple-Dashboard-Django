@@ -1,0 +1,16 @@
+{% with signal.latest_value as latest_value %}
+	{% if latest_value %}
+		<div class="mdc-typography mdc-typography--body1" style="margin-top: 16px;">
+			Latest Value: <strong>{{ latest_value.fetch_value }}</strong>
+		</div>
+		<div class="mdc-typography mdc-typography--caption" style="margin-top: 8px;">
+			Logged on: <strong>{{ latest_value.recorded }}</strong>
+		</div>
+	{% else %}
+		<div class="mdc-typography mdc-typography--body1" style="margin-top: 16px;">
+			<em>No values logged yet&#8230;</em>
+		</div>
+	{% endif %}
+{% endwith %}
+
+

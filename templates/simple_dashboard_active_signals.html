@@ -1,0 +1,12 @@
+{% load static %}
+<script src="{% static 'simple_dashboard/vendor/chart.js' %}"></script>
+<script src="{% static 'simple_dashboard/vendor/moment.js' %}"></script>
+<script src="{% static 'simple_dashboard/vendor/chartjs-adapter-moment.js' %}"></script>
+{% for signal in active_dashboard_signals %}
+	<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-{{ signal.widget_columns }}">
+		<div class="mdc-card mdc-typography mdc-typography--body1" style="padding: 16px;">
+			<strong>{{ signal.name }}</strong>
+			{{ signal.widget_body }}
+		</div>
+	</div>
+{% endfor %}

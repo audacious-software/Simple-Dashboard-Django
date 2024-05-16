@@ -1,0 +1,60 @@
+{% with signal.latest_values as latest_values %}
+    {% if latest_values|length > 0 %}
+        <div class="mdc-typography mdc-typography--body1" style="margin-top: 16px;">
+        	<div style="height: 180px;">
+	            <canvas id="simple_dashboard_signal_{{ signal.pk }}"></canvas>
+	        </div>
+            
+            <script>
+                const chartElement = document.getElementById('simple_dashboard_signal_{{ signal.pk }}');
+                
+                const values = []
+                const labels = []
+
+                {% for latest_value in latest_values %}
+                    values.push({{ latest_value.fetch_value }})
+                    labels.push({{ latest_value.timestamp }} * 1000)
+                {% endfor %}
+                
+                new Chart(chartElement, {
+                    type: 'line',
+                    data: {
+                    	labels: labels,
+                        datasets: [{
+                            label: 'Random Point',
+                            data: values
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                        	x: {
+								type: 'time',
+								time: {
+									unit: 'minute'
+								}
+                        	},
+                        	y: {
+                				ticks: {
+				                    precision: 0
+                				}
+                        	}
+                        },
+                        plugins: {
+                        	legend: {
+                        		display: false
+                        	}
+                        }
+                    }
+                })
+            </script>
+        </div>
+    {% else %}
+        <div class="mdc-typography mdc-typography--body1" style="margin-top: 16px;">
+            <em>No values logged yet&#8230;</em>
+        </div>
+    {% endif %}
+{% endwith %}
+
+
