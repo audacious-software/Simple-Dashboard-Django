@@ -56,6 +56,8 @@ jobs:
             git clone https://github.com/audacious-software/Quicksilver-Django.git quicksilver
             pip install -r quicksilver/requirements.txt
             python manage.py migrate
+            python manage.py install_quicksilver_tasks
+            python manage.py simple_dashboard_update_values
             python manage.py test
             cp quicksilver/.pylintrc .
             pylint simple_dashboard
@@ -113,6 +115,8 @@ jobs:
             git clone https://github.com/audacious-software/Quicksilver-Django.git quicksilver
             pip install -r quicksilver/requirements.txt
             python manage.py migrate
+            python manage.py install_quicksilver_tasks
+            python manage.py simple_dashboard_update_values
             python manage.py test
             cp quicksilver/.pylintrc .
             pylint simple_dashboard
@@ -169,6 +173,8 @@ jobs:
             git clone https://github.com/audacious-software/Quicksilver-Django.git quicksilver
             pip install -r quicksilver/requirements.txt
             python manage.py migrate
+            python manage.py install_quicksilver_tasks
+            python manage.py simple_dashboard_update_values
             python manage.py test
             cp quicksilver/.pylintrc .
             pylint simple_dashboard
@@ -225,6 +231,8 @@ jobs:
             git clone https://github.com/audacious-software/Quicksilver-Django.git quicksilver
             pip install -r quicksilver/requirements.txt
             python manage.py migrate
+            python manage.py install_quicksilver_tasks
+            python manage.py simple_dashboard_update_values
             python manage.py test
             cp quicksilver/.pylintrc .
             pylint simple_dashboard
@@ -281,6 +289,8 @@ jobs:
             git clone https://github.com/audacious-software/Quicksilver-Django.git quicksilver
             pip install -r quicksilver/requirements.txt
             python manage.py migrate
+            python manage.py install_quicksilver_tasks
+            python manage.py simple_dashboard_update_values
             python manage.py test
             cp quicksilver/.pylintrc .
             pylint simple_dashboard
@@ -337,6 +347,8 @@ jobs:
             git clone https://github.com/audacious-software/Quicksilver-Django.git quicksilver
             pip install -r quicksilver/requirements.txt
             python manage.py migrate
+            python manage.py install_quicksilver_tasks
+            python manage.py simple_dashboard_update_values
             python manage.py test
             cp quicksilver/.pylintrc .
             pylint simple_dashboard
