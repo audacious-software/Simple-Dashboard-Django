@@ -63,7 +63,7 @@ jobs:
             pylint simple_dashboard
             bandit -r .
       - save_cache:
-          key: venv-310-{{ .Branch }}-{{ checksum "/home/circleci/django/qs/quicksilver/requirements.txt" }}
+          key: venv-310-{{ .Branch }}-{{ checksum "/home/circleci/django/sd/simple_dashboard/requirements.txt" }}
           paths:
             - "/home/circleci/venv"
       - store_test_results:
@@ -122,7 +122,7 @@ jobs:
             pylint simple_dashboard
             bandit -r .
       - save_cache:
-          key: venv-39-{{ .Branch }}-{{ checksum "/home/circleci/django/qs/quicksilver/requirements.txt" }}
+          key: venv-39-{{ .Branch }}-{{ checksum "/home/circleci/django/sd/simple_dashboard/requirements.txt" }}
           paths:
             - "/home/circleci/venv"
       - store_test_results:
@@ -180,7 +180,7 @@ jobs:
             pylint simple_dashboard
             bandit -r .
       - save_cache:
-          key: venv-38-{{ .Branch }}-{{ checksum "/home/circleci/django/qs/quicksilver/requirements.txt" }}
+          key: venv-38-{{ .Branch }}-{{ checksum "/home/circleci/django/sd/simple_dashboard/requirements.txt" }}
           paths:
             - "/home/circleci/venv"
       - store_test_results:
@@ -238,7 +238,7 @@ jobs:
             pylint simple_dashboard
             bandit -r .
       - save_cache:
-          key: venv-37-{{ .Branch }}-{{ checksum "/home/circleci/django/qs/quicksilver/requirements.txt" }}
+          key: venv-37-{{ .Branch }}-{{ checksum "/home/circleci/django/sd/simple_dashboard/requirements.txt" }}
           paths:
             - "/home/circleci/venv"
       - store_test_results:
@@ -296,7 +296,7 @@ jobs:
             pylint simple_dashboard
             bandit -r .
       - save_cache:
-          key: venv-36-{{ .Branch }}-{{ checksum "/home/circleci/django/qs/quicksilver/requirements.txt" }}
+          key: venv-36-{{ .Branch }}-{{ checksum "/home/circleci/django/sd/simple_dashboard/requirements.txt" }}
           paths:
             - "/home/circleci/venv"
       - store_test_results:
@@ -354,7 +354,7 @@ jobs:
             pylint simple_dashboard
             bandit -r .
       - save_cache:
-          key: venv-27-{{ .Branch }}-{{ checksum "/home/circleci/django/qs/quicksilver/requirements.txt" }}
+          key: venv-27-{{ .Branch }}-{{ checksum "/home/circleci/django/sd/simple_dashboard/requirements.txt" }}
           paths:
             - "/home/circleci/venv"
       - store_test_results:
