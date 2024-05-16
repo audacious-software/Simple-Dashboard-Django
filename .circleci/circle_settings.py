@@ -41,7 +41,7 @@ MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'simple_messaging_dialog_support.circle_urls'
+ROOT_URLCONF = 'sd.urls'
 
 TEMPLATES = [
     {
