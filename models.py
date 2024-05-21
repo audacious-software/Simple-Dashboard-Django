@@ -90,9 +90,9 @@ class DashboardSignalValue(models.Model):
     value = JSONField(default=dict, encoder=DjangoJSONEncoder)
 
     def __str__(self):
-        return '%s = %s' % (self.signal, self.fetch_value())
+        return '%s = %s' % (self.signal, self.display_value())
 
-    def fetch_value(self):
+    def display_value(self):
         try:
             display_value = self.value.get('display_value', None)
 
@@ -101,6 +101,9 @@ class DashboardSignalValue(models.Model):
         except AttributeError:
             pass # Unstructured value
 
+        return self.value
+
+    def fetch_value(self):
         return self.value
 
     def timestamp(self):

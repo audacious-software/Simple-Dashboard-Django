@@ -11,7 +11,7 @@ from .models import DashboardSignal, DashboardSignalValue
 
 @admin.register(DashboardSignalValue)
 class DashboardSignalValueAdmin(admin.ModelAdmin):
-    list_display = ('signal', 'recorded', 'fetch_value',)
+    list_display = ('signal', 'recorded', 'display_value',)
     list_filter = ('recorded', 'signal',)
 
     formfield_overrides = {
