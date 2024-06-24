@@ -63,7 +63,7 @@ class DashboardSignalAdmin(admin.ModelAdmin):
     }
 
     inlines = [
-        DashboardSignalValueInline,
+        # DashboardSignalValueInline,
     ]
 
     actions = [activate_signal, deactivate_signal]
