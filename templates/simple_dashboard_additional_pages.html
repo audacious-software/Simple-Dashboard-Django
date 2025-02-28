@@ -1,0 +1,9 @@
+{% for dashboard_page in dashboard_pages %}
+	<li class="mdc-list-item mdc-list-item--with-one-line" data-href="{{ dashboard_page.url }}">
+		<span class="mdc-list-item__ripple"></span>
+		<i class="mdc-list-item__start material-icons" aria-hidden="true">
+			{{ dashboard_page.icon }}
+		</i>
+		<span class="mdc-list-item__text mdc-list-item__end" style="margin-left: 16px;">{{ dashboard_page.title }}</span>
+	</li>
+{% endfor %}

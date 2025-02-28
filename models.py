@@ -121,3 +121,13 @@ def check_prettyjson_installed(app_configs, **kwargs): # pylint: disable=unused-
         errors.append(error)
 
     return errors
+
+@register()
+def check_site_name_defined(app_configs, **kwargs): # pylint: disable=unused-argument
+    errors = []
+
+    if hasattr(settings, 'SIMPLE_DASHBOARD_SITE_NAME') is False:
+        error = Warning('SIMPLE_DASHBOARD_SITE_NAME parameter not defined', hint='Update configuration to include SIMPLE_DASHBOARD_SITE_NAME.', obj=None, id='simple_dashboard.W002')
+        errors.append(error)
+
+    return errors
