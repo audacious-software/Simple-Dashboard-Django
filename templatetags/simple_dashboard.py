@@ -1,6 +1,7 @@
 # pylint: disable=line-too-long, no-member
 
 import importlib
+import datetime
 
 from django import template
 from django.conf import settings
@@ -57,3 +58,25 @@ def simple_dashboard_additional_pages():
     }
 
     return render_to_string('simple_dashboard_additional_pages.html', template_context)
+
+@register.filter
+def simple_dashboard_is_date(value):
+    try:
+        datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f%z')
+
+        return True
+    except ValueError:
+        pass
+    except TypeError:
+        pass
+
+    try:
+        datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S.%f%z')
+
+        return True
+    except ValueError:
+        pass
+    except TypeError:
+        pass
+
+    return False
