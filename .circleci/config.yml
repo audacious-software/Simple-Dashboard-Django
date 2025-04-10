@@ -117,7 +117,7 @@ jobs:
             python manage.py install_quicksilver_tasks
             python manage.py simple_dashboard_update_values
             python manage.py test
-            cp quicksilver/.pylintrc .
+            cp simple_dashboard/.pylintrc .
             pylint simple_dashboard
             bandit -r .
       - save_cache:
@@ -175,7 +175,7 @@ jobs:
             python manage.py install_quicksilver_tasks
             python manage.py simple_dashboard_update_values
             python manage.py test
-            cp quicksilver/.pylintrc .
+            cp simple_dashboard/.pylintrc .
             pylint simple_dashboard
             bandit -r .
       - save_cache:
