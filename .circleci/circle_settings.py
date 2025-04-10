@@ -98,3 +98,5 @@ STATIC_ROOT = 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR) + '/media/'
+
+SIMPLE_DASHBOARD_SITE_NAME = 'Testing 123'

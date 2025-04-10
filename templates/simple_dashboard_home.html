@@ -1,0 +1,15 @@
+{% extends 'simple_dashboard_base.html' %}
+{% load static %}
+{% load simple_dashboard %}
+{% block 'page_title' %}Home | {% simple_dashboard_site_name %}{% endblock %}
+{% block 'navigation_title' %}Home{% endblock %}
+{% block 'main_content' %}
+	<div class="mdc-layout-grid">
+		<div class="mdc-layout-grid__inner">
+			{% simple_dashboard_active_signals %}
+		</div>
+	</div>
+{% endblock %}
+{% block 'js_init' %}
+	<script data-main="{% static 'simple_dashboard/js/app/home.js' %}" src="{% static 'simple_dashboard/js/vendor/require.js' %}"></script>
+{% endblock %}
