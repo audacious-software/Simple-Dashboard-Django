@@ -1,12 +1,13 @@
 # pylint: disable=line-too-long, no-member
 
+import json
 import importlib
 import datetime
 
 from django import template
 from django.conf import settings
 from django.template.loader import render_to_string
-
+from django.utils.html import mark_safe
 from ..models import DashboardSignal
 
 register = template.Library()
@@ -30,6 +31,10 @@ def simple_dashboard_active_signals(context):
 
     return render_to_string('simple_dashboard_active_signals.html', template_context)
 
+@register.filter
+def simple_dashboard_to_json(raw_obj):
+    return mark_safe(json.dumps(raw_obj))
+
 @register.simple_tag(takes_context=False)
 def simple_dashboard_site_name():
     try:
@@ -40,7 +45,7 @@ def simple_dashboard_site_name():
     return '(Missing site name - set settings.SIMPLE_DASHBOARD_SITE_NAME.)'
 
 @register.simple_tag(takes_context=False)
-def simple_dashboard_additional_pages():
+def simple_dashboard_additional_pages(): # pylint: disable=invalid-name
     dashboard_pages = []
 
     for app in settings.INSTALLED_APPS:

@@ -1,3 +1,4 @@
+{% load simple_dashboard %}
 {% with signal.latest_values as latest_values %}
     {% if latest_values|length > 0 %}
         <div class="mdc-typography mdc-typography--body1" style="margin-top: 16px;">
@@ -12,7 +13,7 @@
                 const labels = []
 
                 {% for latest_value in latest_values %}
-                    values.push({{ latest_value.fetch_value }})
+                    values.push({{ latest_value.display_value }})
                     labels.push({{ latest_value.timestamp }} * 1000)
                 {% endfor %}
                 

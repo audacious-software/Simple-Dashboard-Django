@@ -1,23 +1,11 @@
 # pylint: disable=no-member, line-too-long
 
-import datetime
-import json
-
-import arrow
-import humanize
-import phonenumbers
-import pytz
-
-from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import logout, password_validation
-from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.utils import timezone
-from django.utils.text import slugify
 
 @staff_member_required
 def simple_dashboard_home(request):
