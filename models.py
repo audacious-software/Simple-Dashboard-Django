@@ -67,7 +67,7 @@ class DashboardSignal(models.Model):
             traceback.print_exc() # pass
 
         if widget_template is None:
-            widget_template = 'simple_dashboard_widget_generic.html'
+            widget_template = 'dashboard/simple_dashboard_widget_generic.html'
 
         context['widget_template'] = widget_template
 
