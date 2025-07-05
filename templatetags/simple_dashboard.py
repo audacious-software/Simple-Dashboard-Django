@@ -13,8 +13,8 @@ from ..models import DashboardSignal
 
 register = template.Library()
 
-@register.simple_tag(takes_context=True)
-def simple_dashboard_favicon(context):
+@register.simple_tag(takes_context=False)
+def simple_dashboard_favicon():
     return mark_safe('<link rel="icon" href="%s" type="image/svg+xml">' % reverse('simple_dashboard_favicon'))
 
 @register.simple_tag(takes_context=True)

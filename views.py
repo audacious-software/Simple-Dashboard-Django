@@ -63,4 +63,3 @@ def simple_dashboard_favicon(request):
     }
 
     return render(request, 'dashboard/simple_dashboard_favicon.svg', context=context, content_type='image/svg+xml')
-
