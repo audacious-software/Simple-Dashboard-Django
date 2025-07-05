@@ -7,10 +7,12 @@ if sys.version_info[0] > 2:
 else:
     from django.conf.urls import url
 
-from .views import simple_dashboard_home, simple_dashboard_logout, simple_dashboard_account
+from .views import simple_dashboard_home, simple_dashboard_logout, simple_dashboard_account, simple_dashboard_favicon
 
 urlpatterns = [
     url(r'^logout$', simple_dashboard_logout, name='simple_dashboard_logout'),
     url(r'^account$', simple_dashboard_account, name='simple_dashboard_account'),
+    url(r'^favicon.svg$', simple_dashboard_favicon, name='simple_dashboard_favicon'),
+
     url(r'^$', simple_dashboard_home, name='simple_dashboard_home'),
 ]

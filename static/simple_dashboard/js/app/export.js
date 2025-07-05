@@ -51,5 +51,11 @@ requirejs(['material', 'cookie', 'chart', 'jquery', 'base', 'moment'], function 
     $('#select_all_types').show()
   })
 
+  $('.source_group_checkbox').click(function() {
+    const className = $(this).attr('id')
+
+    $(`.${className}`).prop('checked', $(this).prop('checked'))
+  })
+
   $('.export_list').height(400)
 })

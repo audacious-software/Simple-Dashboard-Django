@@ -7,10 +7,15 @@ import datetime
 from django import template
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.html import mark_safe
 from ..models import DashboardSignal
 
 register = template.Library()
+
+@register.simple_tag(takes_context=True)
+def simple_dashboard_favicon(context):
+    return mark_safe('<link rel="icon" href="%s" type="image/svg+xml">' % reverse('simple_dashboard_favicon'))
 
 @register.simple_tag(takes_context=True)
 def simple_dashboard_active_signals(context):

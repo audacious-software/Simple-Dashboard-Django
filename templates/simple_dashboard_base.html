@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-
+        {% simple_dashboard_favicon %}
         <link rel="stylesheet" href="{% static 'simple_dashboard/js/vendor/material-components-web-11.0.0.css' %}" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -57,11 +57,18 @@
                     <a href="#" class="demo-menu material-icons mdc-top-app-bar__navigation-icon">menu</a>
                     <span class="mdc-top-app-bar__title">{% block 'navigation_title' %}Dashboard{% endblock %}</span>
                 </section>
-                <!-- <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-                    {% block 'page_help' %}
-                        <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Help" id="action_help">help</a>
-                    {% endblock %}
-                </section> -->
+                {% if include_search %}
+                    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="padding-right: 16px;">
+                        <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label" id="topbar_search" style="height: 36px; background:white; border-radius: 4px; padding-right: 0px; padding-left: 8px;">
+                            <span class="mdc-notched-outline">
+                                <span class="mdc-notched-outline__leading"></span>
+                                <span class="mdc-notched-outline__trailing"></span>
+                            </span>
+                            <input class="mdc-text-field__input" type="text" aria-label="Search" id="topbar_search_field" placeholder="Search" style="font-size: smaller;">
+                            <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="0" role="button" id="topbar_search_icon">search</i>
+                        </label>
+                    </section>
+                {% endif %}
             </div>
         </header>
         <aside class="mdc-drawer mdc-drawer--open mdc-drawer--dismissible mdc-top-app-bar--fixed-adjust">

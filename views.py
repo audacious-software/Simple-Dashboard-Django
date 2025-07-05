@@ -56,3 +56,11 @@ def simple_dashboard_account(request):
     context['user'] = request.user
 
     return render(request, 'simple_dashboard_account.html', context=context)
+
+def simple_dashboard_favicon(request):
+    context = {
+        'fill_value': '#610FED'
+    }
+
+    return render(request, 'dashboard/simple_dashboard_favicon.svg', context=context, content_type='image/svg+xml')
+

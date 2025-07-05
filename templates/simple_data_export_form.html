@@ -36,21 +36,39 @@
 								<div class="export_list" style="border: thin solid gray; margin-top: 16px; overflow-y: scroll;">
 									<ul class="mdc-deprecated-list" role="group">
 										{% for source in data_sources %}
-											<li class="mdc-deprecated-list-item" role="checkbox" aria-checked="false">
-												<span class="mdc-deprecated-list-item__ripple"></span>
-												<span class="mdc-deprecated-list-item__graphic">
-													<div class="mdc-checkbox">
-														<input type="checkbox" class="mdc-checkbox__native-control source_checkbox" name="source_{{ source.0 }}" id="source_{{ source.0 }}" />
-														<div class="mdc-checkbox__background">
-															<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-																<path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-															</svg>
-															<div class="mdc-checkbox__mixedmark"></div>
+											{% if source|length > 1 %}
+												<li class="mdc-deprecated-list-item" role="checkbox" aria-checked="false">
+													<span class="mdc-deprecated-list-item__ripple"></span>
+													<span class="mdc-deprecated-list-item__graphic">
+														<div class="mdc-checkbox">
+															<input type="checkbox" class="mdc-checkbox__native-control source_checkbox source_group_{{ source.2|slugify }}" name="source_{{ source.0 }}" id="source_{{ source.0 }}" />
+															<div class="mdc-checkbox__background">
+																<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+																	<path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+																</svg>
+																<div class="mdc-checkbox__mixedmark"></div>
+															</div>
 														</div>
-													</div>
-												</span>
-												<label class="mdc-deprecated-list-item__text" for="source_{{ source.0 }}">{{ source.1 }}</label>
-											</li>
+													</span>
+													<label class="mdc-deprecated-list-item__text" for="source_{{ source.0 }}">{{ source.1 }}</label>
+												</li>
+											{% else %}
+												<li class="mdc-deprecated-list-item" role="checkbox" aria-checked="false">
+													<span class="mdc-deprecated-list-item__ripple"></span>
+													<span class="mdc-deprecated-list-item__graphic">
+														<div class="mdc-checkbox">
+															<input type="checkbox" class="mdc-checkbox__native-control source_group_checkbox" name="source_group_{{ source.0|slugify }}" id="source_group_{{ source.0|slugify }}" />
+															<div class="mdc-checkbox__background">
+																<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+																	<path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+																</svg>
+																<div class="mdc-checkbox__mixedmark"></div>
+															</div>
+														</div>
+													</span>
+													<label class="mdc-deprecated-list-item__text mdc-typography mdc-typography--subtitle2" for="source_group_{{ source.0|slugify }}">{{ source.0 }}</label>
+												</li>
+											{% endif %}
 										{% endfor %}
 									</ul>
 								</div>
