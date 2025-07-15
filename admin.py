@@ -1,6 +1,7 @@
 from prettyjson import PrettyJSONWidget
 
 from django.contrib import admin, messages
+from django.utils.safestring import mark_safe
 
 try:
     from django.db.models import JSONField
@@ -9,13 +10,17 @@ except ImportError:
 
 from .models import DashboardSignal, DashboardSignalValue
 
+class PrettyJSONWidgetFixed(PrettyJSONWidget):
+    def render(self, name, value, attrs=None, **kwargs):
+        return mark_safe(super().render(name, value, attrs=None, **kwargs))
+
 @admin.register(DashboardSignalValue)
 class DashboardSignalValueAdmin(admin.ModelAdmin):
     list_display = ('signal', 'recorded', 'display_value',)
     list_filter = ('recorded', 'signal',)
 
     formfield_overrides = {
-        JSONField: {'widget': PrettyJSONWidget(attrs={'initial': 'parsed'})}
+        JSONField: {'widget': PrettyJSONWidgetFixed(attrs={'initial': 'parsed'})}
     }
 
 class DashboardSignalValueInline(admin.TabularInline):
@@ -59,7 +64,7 @@ class DashboardSignalAdmin(admin.ModelAdmin):
     search_fields = ('name', 'package', 'configuration',)
 
     formfield_overrides = {
-        JSONField: {'widget': PrettyJSONWidget(attrs={'initial': 'parsed'})}
+        JSONField: {'widget': PrettyJSONWidgetFixed(attrs={'initial': 'parsed'})}
     }
 
     inlines = [
