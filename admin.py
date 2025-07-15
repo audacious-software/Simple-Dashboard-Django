@@ -1,3 +1,5 @@
+# pylint: disable=super-with-arguments,line-too-long
+
 from prettyjson import PrettyJSONWidget
 
 from django.contrib import admin, messages
