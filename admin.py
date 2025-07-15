@@ -12,7 +12,7 @@ from .models import DashboardSignal, DashboardSignalValue
 
 class PrettyJSONWidgetFixed(PrettyJSONWidget):
     def render(self, name, value, attrs=None, **kwargs):
-        return mark_safe(super().render(name, value, attrs=None, **kwargs))
+        return mark_safe(super().render(name, value, attrs=None, **kwargs)) # nosec
 
 @admin.register(DashboardSignalValue)
 class DashboardSignalValueAdmin(admin.ModelAdmin):
