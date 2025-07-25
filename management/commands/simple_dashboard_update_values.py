@@ -5,12 +5,13 @@ from __future__ import print_function
 
 import datetime
 import importlib
+import logging
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 
-from quicksilver.decorators import handle_schedule, add_qs_arguments
+from quicksilver.decorators import handle_schedule, add_qs_arguments, handle_logging, handle_lock
 
 from ...models import DashboardSignal
 
@@ -25,11 +26,17 @@ class Command(BaseCommand):
                             default=False,
                             help='Force updated of all signal values (including inactive)')
 
+    @handle_logging
     @handle_schedule
+    @handle_lock
     def handle(self, *args, **options):
+        logging.info('Updating signals...')
+
         for app in settings.INSTALLED_APPS:
             try:
                 app_module = importlib.import_module('.dashboard_api', package=app)
+
+                logging.info('Fetching signals from %s...', app)
 
                 dashboard_signals = app_module.dashboard_signals()
 
@@ -48,6 +55,8 @@ class Command(BaseCommand):
                         if configuration.get('active', False):
                             signal.active = True
                             signal.save()
+
+                logging.info('Fetched signals from %s:', app, dashboard_signals)
             except ImportError:
                 pass
             except AttributeError:
@@ -61,4 +70,8 @@ class Command(BaseCommand):
             signals_due = DashboardSignal.objects.all()
 
         for signal_due in signals_due:
+            logging.info('Updating signal %s...', signal_due)
             signal_due.update_value()
+            logging.info('Updated signal %s.', signal_due)
+
+        logging.info('Done updating signals.')
