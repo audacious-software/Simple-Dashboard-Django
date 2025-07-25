@@ -56,7 +56,7 @@ class Command(BaseCommand):
                             signal.active = True
                             signal.save()
 
-                logging.info('Fetched signals from %s:', app, dashboard_signals)
+                logging.info('Fetched signals from %s: %s', app, dashboard_signals)
             except ImportError:
                 pass
             except AttributeError:
