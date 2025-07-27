@@ -5,7 +5,7 @@ from __future__ import print_function
 
 from django.core.management.base import BaseCommand
 
-from quicksilver.decorators import handle_schedule, add_qs_arguments
+from quicksilver.decorators import handle_schedule, add_qs_arguments, handle_lock
 
 from ...models import DashboardSignal
 
@@ -17,5 +17,6 @@ class Command(BaseCommand):
         pass
 
     @handle_schedule
+    @handle_lock
     def handle(self, *args, **options):
         print('Deleted: %s' % (DashboardSignal.objects.all().delete(),))

@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 
-from quicksilver.decorators import handle_schedule, add_qs_arguments
+from quicksilver.decorators import handle_schedule, add_qs_arguments, handle_lock
 
 from ...models import DashboardSignal
 
@@ -26,6 +26,7 @@ class Command(BaseCommand):
                             help='Force updated of all signal values (including inactive)')
 
     @handle_schedule
+    @handle_lock
     def handle(self, *args, **options):
         for app in settings.INSTALLED_APPS:
             try:
