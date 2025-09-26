@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=no-member,line-too-long
 
-from __future__ import print_function
+import six
 
 from django.core.management.base import BaseCommand
 
@@ -19,4 +19,4 @@ class Command(BaseCommand):
     @handle_schedule
     @handle_lock
     def handle(self, *args, **options):
-        print('Deleted: %s' % (DashboardSignal.objects.all().delete(),))
+        six.print_('Deleted: %s' % (DashboardSignal.objects.all().delete(),))
