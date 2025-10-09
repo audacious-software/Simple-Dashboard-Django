@@ -90,3 +90,25 @@ def simple_dashboard_is_date(value):
         pass
 
     return False
+
+@register.simple_tag()
+def simple_dashboard_request_widget(widget_name):
+    template_context = {
+        'widget_name': widget_name
+    }
+
+    for app in settings.INSTALLED_APPS:
+        try:
+            app_module = importlib.import_module('.dashboard_api', package=app)
+
+            widget = app_module.fetch_dashboard_widget(widget_name)
+
+            if widget is not None:
+                return widget
+
+        except ImportError:
+            pass
+        except AttributeError:
+            pass
+
+    return render_to_string('dashboard/widgets/simple_dashboard_widget_unavailable.html', template_context)
