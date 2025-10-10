@@ -28,13 +28,15 @@ class Command(BaseCommand):
     @handle_schedule
     @handle_lock
     def handle(self, *args, **options):
-        logging.info('Updating signals...')
+        logger = logging.getLogger(__name__)
+
+        logger.debug('Updating signals...')
 
         for app in settings.INSTALLED_APPS:
             try:
                 app_module = importlib.import_module('.dashboard_api', package=app)
 
-                logging.info('Fetching signals from %s...', app)
+                logger.debug('Fetching signals from %s...', app)
 
                 dashboard_signals = app_module.dashboard_signals()
 
@@ -54,7 +56,7 @@ class Command(BaseCommand):
                             signal.active = True
                             signal.save()
 
-                logging.info('Fetched signals from %s: %s', app, dashboard_signals)
+                logger.debug('Fetched signals from %s: %s', app, dashboard_signals)
             except ImportError:
                 pass
             except AttributeError:
@@ -68,8 +70,8 @@ class Command(BaseCommand):
             signals_due = DashboardSignal.objects.all()
 
         for signal_due in signals_due:
-            logging.info('Updating signal %s...', signal_due)
+            logging.debug('Updating signal %s...', signal_due)
             signal_due.update_value()
-            logging.info('Updated signal %s.', signal_due)
+            logger.debug('Updated signal %s.', signal_due)
 
-        logging.info('Done updating signals.')
+        logging.debug('Done updating signals.')
