@@ -27,7 +27,7 @@ class Command(BaseCommand):
     @handle_logging
     @handle_schedule
     @handle_lock
-    def handle(self, *args, **options):
+    def handle(self, *args, **options): # pylint: disable=too-many-locals
         logger = logging.getLogger(__name__)
 
         logger.debug('Updating signals...')
