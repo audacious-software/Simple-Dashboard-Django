@@ -5,13 +5,8 @@ bandit==1.7.10; python_version == '3.8'
 bandit==1.8.6; python_version >= '3.9'
 Django==1.11.29; python_version < '3.0'
 Django==3.2.25; python_version >= '3.0' and python_version <= '3.7'
-<<<<<<< HEAD
-Django==4.2.25; python_version >= '3.8' and python_version <= '3.9'
-Django==5.2.8; python_version >= '3.10'
-=======
 Django==4.2.26; python_version >= '3.8' and python_version <= '3.9'
-Django==5.2.7; python_version >= '3.10'
->>>>>>> 39512158361049a86cf2f35a25cd9665057fed26
+Django==5.2.8; python_version >= '3.10'
 django-prettyjson==0.4.1
 psycopg2-binary==2.8.6; python_version < '3.0'
 psycopg2-binary==2.9.8; python_version >= '3.0' and python_version < '3.7'
