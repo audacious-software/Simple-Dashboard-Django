@@ -67,7 +67,7 @@ DATABASES = {
         'ENGINE':   'django.db.backends.postgresql',
         'NAME':     'circle_test',
         'USER':     'root',
-        'PASSWORD': '',
+        'PASSWORD': '', # nosec
         'HOST':     'localhost',
         'PORT':     '',
     }
