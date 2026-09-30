@@ -49,7 +49,6 @@ requirejs(['material', 'cookie', 'jquery'], function (mdc, Cookies) {
 
   window.setTimeout(function () {
     drawer.open = true
-    console.log('open drawrer')
   }, 50)
 
   const itemsList = mdc.list.MDCList.attachTo(document.getElementById('home_drawer'))
