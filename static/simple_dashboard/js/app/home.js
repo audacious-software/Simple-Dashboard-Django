@@ -25,7 +25,6 @@ requirejs.config({
 
 requirejs(['material', 'cookie', 'chart', 'jquery', 'base', 'moment'], function (mdc, Cookies) {
   require(['chart'], function (Chart) {
-    console.log('Chart: ')
-    console.log(Chart)
+
   })
 })

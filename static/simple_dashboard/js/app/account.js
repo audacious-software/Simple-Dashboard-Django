@@ -22,8 +22,6 @@ requirejs.config({
 })
 
 requirejs(['material', 'cookie', 'jquery', 'base'], function (mdc, Cookies) {
-  console.log(mdc)
-
   mdc.textField.MDCTextField.attachTo(document.getElementById('username-field'))
   const emailField = mdc.textField.MDCTextField.attachTo(document.getElementById('email-field'))
   const currentPasswordField = mdc.textField.MDCTextField.attachTo(document.getElementById('current-password-field'))
@@ -35,8 +33,6 @@ requirejs(['material', 'cookie', 'jquery', 'base'], function (mdc, Cookies) {
     const currentPassword = currentPasswordField.value
     const newPassword = newPasswordField.value
     const confirmPassword = confirmPasswordField.value
-
-    console.log('e: ' + email + '; cp: ' + currentPassword + '; np: ' + newPassword + '; np2: ' + confirmPassword)
 
     if (newPassword !== '') {
       if (currentPassword === '') {
